@@ -1,2 +1,2 @@
 # jurnal-sd-AldoOktavian
-Belajar
+Belajar Software Development
