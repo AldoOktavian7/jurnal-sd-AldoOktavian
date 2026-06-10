@@ -1,6 +1,6 @@
 import os
 
-# Membaca variabel lingkungan
+# Membaca variabel lingkungan dengan nilai fallback/default
 user_name = os.getenv('APP_USER', 'Guest')
 app_env = os.getenv('APP_ENV', 'development')
 
