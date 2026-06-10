@@ -1,0 +1,29 @@
+services:
+  web-app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - APP_USER=${USER_NAME}
+    volumes:
+      - ./logs:/app/logs
+      - shared-storage:/app/data  # 2. Petakan ke /app/data
+    networks:
+      - mvc-network
+
+  db-server:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_PASSWORD=rahasia
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - mvc-network
+
+volumes:
+  db-data:
+  shared-storage: # 1. Tambahkan Named Volume global baru di sini
+
+networks:
+  mvc-network:
+    driver: bridge
