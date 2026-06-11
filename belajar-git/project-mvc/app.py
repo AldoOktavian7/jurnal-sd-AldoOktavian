@@ -1,14 +1,26 @@
+from flask import Flask
 import os
-import time
 
-user_name = os.getenv('APP_USER', 'Guest')
-app_env = os.getenv('APP_ENV', 'development')
+app = Flask(__name__)
+
+user_name = os.getenv("APP_USER", "Developer Mahasiswa")
+app_env = os.getenv("APP_ENV", "development")
+
+@app.route("/")
+def home():
+    return f"""
+    <html>
+    <head>
+        <title>Si Jayam</title>
+    </head>
+    <body>
+        <h1>Halo {user_name}!</h1>
+        <h2>Si Jayam</h2>
+        <h3>Versi 2.0 - Stabil</h3>
+        <p>Environment: {app_env}</p>
+    </body>
+    </html>
+    """
 
 if __name__ == "__main__":
-    print(f"Halo {user_name}! Aplikasi ini berjalan di dalam kontainer Docker.")
-    print(f"Environment saat ini: {app_env}")
-    
-    print("Kontainer standby. Menunggu perintah...")
-    # Loop ini menjaga agar kontainer tetap hidup terus di latar belakang
-    while True:
-        time.sleep(3600)
+    app.run(host="0.0.0.0", port=5000)
