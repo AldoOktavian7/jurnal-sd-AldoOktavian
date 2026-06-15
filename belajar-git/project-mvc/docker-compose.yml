@@ -27,3 +27,4 @@ volumes:
 networks:
   mvc-network:
     driver: bridge
+    
